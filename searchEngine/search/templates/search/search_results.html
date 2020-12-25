@@ -1,3 +1,9 @@
 <div>
   you have searched '{{search_text}}'
 </div>
+
+<div>
+  {% for result in results %}
+    <a href= {{ result.url }}> <p>{{ result.title }}</p></a>
+  {% endfor %}
+</div>
