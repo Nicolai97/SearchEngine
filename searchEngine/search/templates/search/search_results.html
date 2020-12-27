@@ -1,5 +1,8 @@
 <div>
   you have searched '{{search_text}}'
+  {% if did_you_mean %}
+    <p>Forse cercavi: {{ did_you_mean }}</p>
+  {% endif %}
 </div>
 
 <div>

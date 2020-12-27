@@ -3,13 +3,15 @@ from whoosh.index import create_in
 from whoosh.fields import Schema, TEXT, ID
 from whoosh.qparser import QueryParser
 from whoosh import scoring
+from whoosh.analysis import StemmingAnalyzer
 from whoosh.index import open_dir
 import sys
 import re
 import xml.etree.ElementTree as ET
 
 def createSearchableData():   
-    schema = Schema(title = TEXT(stored = True), ID = ID(stored = True), url = TEXT(stored = True), textdata = TEXT(stored = True))
+    stem_ana = StemmingAnalyzer()
+    schema = Schema(title = TEXT(stored = True, analyzer=stem_ana), ID = ID(stored = True), url = TEXT(stored = True), textdata = TEXT(stored = True, analyzer= stem_ana))
     if not os.path.exists("indexdir"):
         os.mkdir("indexdir")
 
