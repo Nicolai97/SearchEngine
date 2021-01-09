@@ -19,7 +19,7 @@ def createSearchableData():
     writer = ix.writer()
  
 
-    path = '/Users/nicolaiosalchuk/Sviluppo/gestione_info/wiki_dump/dump_900.xml'
+    path = './dump/dump_900.xml'
     root = ET.parse(path)
     xml_data = {}
     for item in root.iter():
