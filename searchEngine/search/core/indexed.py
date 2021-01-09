@@ -34,4 +34,4 @@ def createSearchableData():
     writer.commit()
  
 
-#createSearchableData()
+createSearchableData()
