@@ -4,12 +4,13 @@ from whoosh.query import FuzzyTerm
 from whoosh.analysis import StemmingAnalyzer
 from whoosh import scoring
 from whoosh.index import open_dir
+from os.path import relpath
 
 def search_bar(request):
   return render(request, 'search/search_bar.html')
 
 def make_search(request):
-  myindex = open_dir("../indexdir")
+  myindex = open_dir(relpath("/indexdir", start="/"))
   qp = MultifieldParser(["title", "textdata"], schema=myindex.schema, group=OrGroup, termclass=FuzzyTerm)
   qstring = request.POST.get('search_text')
   q = qp.parse(qstring)

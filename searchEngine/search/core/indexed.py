@@ -8,6 +8,7 @@ from whoosh.index import open_dir
 import sys
 import re
 import xml.etree.ElementTree as ET
+from os.path import relpath
 
 def createSearchableData():   
     stem_ana = StemmingAnalyzer()
@@ -19,7 +20,7 @@ def createSearchableData():
     writer = ix.writer()
  
 
-    path = './dump/dump_900.xml'
+    path = os.path.relpath("/searchEngine/search/core/dump/dump_900.xml",start="/")
     root = ET.parse(path)
     xml_data = {}
     for item in root.iter():
