@@ -10,13 +10,12 @@ def search_bar(request):
   return render(request, 'search/search_bar.html')
 
 def make_search(request):
-  myindex = open_dir(relpath("/indexdir", start="/"))
+  myindex = open_dir(relpath("/search/core/indexdir", start="/"))
   qp = MultifieldParser(["title", "textdata"], schema=myindex.schema, group=OrGroup, termclass=FuzzyTerm)
   qstring = request.POST.get('search_text')
   q = qp.parse(qstring)
 
   results_list = []
-  stem_ana = StemmingAnalyzer()
 
   with myindex.searcher(weighting=scoring.Frequency) as s:
     results = s.search(q, limit=30, terms=True)
