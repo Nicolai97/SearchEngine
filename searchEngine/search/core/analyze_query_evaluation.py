@@ -1,4 +1,4 @@
-from evaluations.map import map
+from evaluations.precision_and_recall import precision_and_recall
 from search.make_search import make_search_service
 import os
 import pathlib
@@ -13,7 +13,7 @@ for search_query in google_results:
   results_ids = results['results_ids']
   google_result = google_results[search_query]
 
-  values = map(results_ids, google_result)
+  values = precision_and_recall(results_ids, google_result)
   print("query: '%s'\nprecision: %s\nrecall: %s\n\n" % (search_query, str(values['precision']), str(values['recall'])))
 
 

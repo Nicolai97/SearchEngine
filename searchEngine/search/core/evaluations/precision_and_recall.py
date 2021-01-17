@@ -19,7 +19,7 @@
 
 import math
 
-def map(search_results, google_results):
+def precision_and_recall(search_results, google_results):
     total_precision = 0
     total_recall = 0
     hit = 0
