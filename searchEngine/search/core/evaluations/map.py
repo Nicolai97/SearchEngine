@@ -16,3 +16,23 @@
 # Mean Average Precision
 # Much ado about nothing
 # calcolare i valori di precision, average precision e recall su 10 risultati
+
+import math
+
+def map(search_results, google_results):
+    total_precision = 0
+    hit = 0
+    current_hit = 0
+    for x in range(len(search_results)):
+        if search_results[x] in google_results:
+            hit += 1
+            current_hit = 1
+        if current_hit == 1:
+            precision = round(hit / (x + 1), 2)
+            total_precision += precision
+        current_hit = 0
+    if hit == 0:
+        return 0
+    return round(total_precision / hit, 3)
+
+
