@@ -31,7 +31,7 @@ def make_search(request):
     results = s.search(q, limit=30, terms=True)
 
     #query expansion
-    keywords = [keyword for keyword, score in results.key_terms("textdata", docs=10, numterms=5)]
+    keywords = [keyword for keyword, score in results.key_terms("textdata", docs=3, numterms=3)]
     query_keyword = qp.parse(reduce(lambda a, b: a + ' ' + b, keywords))
     results_keyword = s.search(query_keyword, limit=30, terms=True)
     results.upgrade_and_extend(results_keyword)

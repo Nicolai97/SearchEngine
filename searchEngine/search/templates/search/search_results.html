@@ -7,6 +7,13 @@
 
 <div>
   {% for result in results %}
-    <a href= {{ result.url }}> <p>{{ result.title }}</p></a>
+  <div style="margin-top: 4%; margin-left: 2%; margin-right: 30%;">
+    <a href= {{ result.url }} > <p>{{ result.title }}</p></a>
+    <div style="opacity: 60%;">
+      {% autoescape off %}
+        {{ result.highlight }}
+      {% endautoescape %}
+    </div>
+  </div>
   {% endfor %}
 </div>
