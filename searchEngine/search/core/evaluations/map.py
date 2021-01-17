@@ -21,6 +21,7 @@ import math
 
 def map(search_results, google_results):
     total_precision = 0
+    total_recall = 0
     hit = 0
     current_hit = 0
     for x in range(len(search_results)):
@@ -32,7 +33,13 @@ def map(search_results, google_results):
             total_precision += precision
         current_hit = 0
     if hit == 0:
-        return 0
-    return round(total_precision / hit, 3)
+        return {'precision': 0, 'recall': 0}
+
+    recall = round(hit / len(google_results), 2)
+
+    return {
+        'precision': round(total_precision / hit, 3),
+        'recall': recall
+    }
 
 

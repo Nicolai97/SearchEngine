@@ -13,8 +13,8 @@ for search_query in google_results:
   results_ids = results['results_ids']
   google_result = google_results[search_query]
 
-  precision = map(results_ids, google_result)
-  print("query: '%s'\nprecision: %s\n\n\n" % (search_query, str(precision)))
+  values = map(results_ids, google_result)
+  print("query: '%s'\nprecision: %s\nrecall: %s\n\n" % (search_query, str(values['precision']), str(values['recall'])))
 
 
 

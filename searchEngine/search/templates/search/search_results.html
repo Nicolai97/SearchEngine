@@ -1,5 +1,9 @@
 <div style="margin-left: 2%; margin-right: 30%;">
-  <input type="text" value="{{search_text}}">
+  <form method="POST" action="{% url 'make_search' %}">
+    {% csrf_token %}
+    <input type="text" value="{{search_text}}" name="search_text" style="width: 300px; float: left">
+    <button style="margin-left: 10px">Search</button>
+  </form>
 </div>
 
 <div>
