@@ -10,3 +10,7 @@ progetto di gestione dell'informazione, indicizazzione dei dump wikipedia
 - per invocare la shell di python python manage.py shell
 
 - creare un super user python manage.py createsuperuser
+
+# search evaluation
+
+- python searchEngine/search/core/analyze_query_evaluation.py
