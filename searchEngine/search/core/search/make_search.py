@@ -14,7 +14,7 @@ def make_search_service(search_text):
   charmap = charset_table_to_dict(default_charset)
   custom_analyzers = StemmingAnalyzer() | CharsetFilter(charmap)
 
-  index_path = join(pathlib.Path(__file__).parent.parent.parent.parent.parent.absolute(), 'indexdir')
+  index_path = join(pathlib.Path(__file__).parent.parent.absolute(), 'indexdir')
   myindex = open_dir(index_path)
   qp = MultifieldParser(["title", "textdata"], schema=myindex.schema, termclass=FuzzyTerm, fieldboosts={'title': 3.0, 'textdata': 1.0})
   qstring = search_text
@@ -29,9 +29,10 @@ def make_search_service(search_text):
 
     #query expansion
     keywords = [keyword for keyword, score in results.key_terms("textdata", docs=3, numterms=3)]
-    query_keyword = qp.parse(reduce(lambda a, b: a + ' ' + b, keywords))
-    results_keyword = s.search(query_keyword, limit=30, terms=True)
-    results.upgrade_and_extend(results_keyword)
+    if not keywords and keywords == " ":
+      query_keyword = qp.parse(reduce(lambda a, b: a + ' ' + b, keywords))
+      results_keyword = s.search(query_keyword, limit=30, terms=True)
+      results.upgrade_and_extend(results_keyword)
 
     #sorting
     key_sort = lambda result: result.score
