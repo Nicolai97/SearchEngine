@@ -15,7 +15,7 @@ def createSearchableData():
     charmap = charset_table_to_dict(default_charset)
     custom_analyzers = StemmingAnalyzer() | CharsetFilter(charmap)
     
-    schema = Schema(title=TEXT(stored= True, analyzer=custom_analyzers, field_boost=3 ),
+    schema = Schema(title=TEXT(stored= True, field_boost=3),
                                  ID= ID(stored=True, unique=True), 
                                  url= TEXT(stored=True), 
                                  textdata= TEXT(stored=True, analyzer= custom_analyzers, field_boost=1))
