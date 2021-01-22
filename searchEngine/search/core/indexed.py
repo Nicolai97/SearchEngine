@@ -15,10 +15,10 @@ def createSearchableData():
     charmap = charset_table_to_dict(default_charset)
     custom_analyzers = StemmingAnalyzer() | CharsetFilter(charmap)
     
-    schema = Schema(title=TEXT(stored= True, field_boost=3),
+    schema = Schema(title=TEXT(stored= True, field_boost=3.0),
                                  ID= ID(stored=True, unique=True), 
                                  url= TEXT(stored=True), 
-                                 textdata= TEXT(stored=True, analyzer= custom_analyzers, field_boost=1))
+                                 textdata= TEXT(stored=True, analyzer= custom_analyzers, field_boost=0.8))
     if not os.path.exists("indexdir"):
         os.mkdir("indexdir")
 
